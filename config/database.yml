@@ -20,16 +20,25 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
+  username: postgres
+  port: 5432
 
 development:
   <<: *default
-  database: HW_rails_person_development
+  adapter: postgresql
+  database: reddit_development
+  # pool: 10
+  username: postgres
+  password: 13611361
+  port: 5432
+
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username: HW_rails_person
+  #username: notes
 
   # The password associated with the postgres role (username).
   #password:
@@ -57,7 +66,10 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: HW_rails_person_test
+  database: reddit_test
+  username: postgres
+  password: 12341234
+  port: 5432
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +92,9 @@ test:
 #
 production:
   <<: *default
-  database: HW_rails_person_production
-  username: HW_rails_person
-  password: <%= ENV['HW_RAILS_PERSON_DATABASE_PASSWORD'] %>
+  database: reddit_production
+  # username: notes
+  # password: <%= ENV['NOTES_DATABASE_PASSWORD'] %>
+  username: postgres
+  password: 12341234
+  port: 5432
